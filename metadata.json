@@ -1,0 +1,9 @@
+{
+  "name": "Twins ERP - O Braço Direito do Seu Negócio",
+  "description": "Landing page de alta conversão para o Twins ERP, focado em pequenas e médias empresas com emissão rápida de NFe, controle de estoque e gestão financeira.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": []
+}
