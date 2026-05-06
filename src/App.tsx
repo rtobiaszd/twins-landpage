@@ -433,13 +433,15 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-600">
       <Navbar />
-      <Hero />
-      <SocialProof />
-      <PainPoints />
-      <Features />
-      <WhyTwins />
-      <CTASection />
-      <FAQ />
+      <main>
+        <Hero />
+        <SocialProof />
+        <PainPoints />
+        <Features />
+        <WhyTwins />
+        <CTASection />
+        <FAQ />
+      </main>
       <Footer />
     </div>
   );
