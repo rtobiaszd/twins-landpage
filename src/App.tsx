@@ -27,6 +27,21 @@ import { motion, AnimatePresence } from 'motion/react';
 
 const WHATSAPP_LINK = "https://wa.me/5541996088796?text=Olá!%20Gostaria%20de%20agendar%20uma%20demonstração%20do%20Twins%20ERP.";
 
+const Logo = ({ className = "h-12 w-auto" }: { className?: string }) => (
+  <div className={`flex items-center gap-3 ${className}`}>
+    <svg viewBox="0 0 400 400" className="h-full w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M200 40L340 120V280L200 360L60 280V120L200 40Z" fill="currentColor" className="text-brand-blue" />
+      <path d="M200 60L320 130V270L200 340L80 270V130L200 60Z" fill="white" fillOpacity="0.1" />
+      <path d="M140 160H260V190H215V280H185V190H140V160Z" fill="white" />
+      <path d="M240 210L265 235L310 190V215L265 260L240 235V210Z" fill="#4ADE80" />
+    </svg>
+    <div className="flex flex-col leading-none">
+      <span className="text-2xl font-black tracking-tighter text-brand-blue">TWINS <span className="text-brand-light font-bold">ERP</span></span>
+      <span className="text-[8px] font-bold tracking-[0.2em] text-slate-400 uppercase">Gestão e Emissão</span>
+    </div>
+  </div>
+);
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,21 +50,18 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-              <Activity className="text-white w-6 h-6" />
-            </div>
-            <span className="text-2xl font-bold text-slate-900 tracking-tight">Twins<span className="text-blue-600">ERP</span></span>
+            <Logo className="h-10" />
           </div>
           
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-            <a href="#solucoes" className="hover:text-blue-600 transition-colors">Soluções</a>
-            <a href="#fiscal" className="hover:text-blue-600 transition-colors">Módulos Fiscais</a>
-            <a href="#por-que-twins" className="hover:text-blue-600 transition-colors">Por que Twins?</a>
+            <a href="#solucoes" className="hover:text-brand-blue transition-colors">Soluções</a>
+            <a href="#fiscal" className="hover:text-brand-blue transition-colors">Módulos Fiscais</a>
+            <a href="#por-que-twins" className="hover:text-brand-blue transition-colors">Por que Twins?</a>
             <a 
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noreferrer"
-              className="bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 active:scale-95"
+              className="bg-brand-blue text-white px-6 py-2.5 rounded-full hover:bg-brand-light transition-all shadow-lg shadow-blue-200 active:scale-95"
             >
               Agendar Demonstração
             </a>
@@ -105,7 +117,7 @@ const Hero = () => {
               ERP Desktop de Nova Geração
             </div>
             <h1 className="text-5xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-6">
-              O Twins ERP é a outra <span className="text-blue-600">metade</span> que faltava para a sua gestão.
+              O Twins ERP é a outra <span className="text-brand-blue">metade</span> que faltava para a sua gestão.
             </h1>
             <p className="text-xl text-slate-600 mb-8 leading-relaxed max-w-lg">
               Simplifique a emissão de NFe, controle seu estoque em tempo real e gerencie o financeiro com a velocidade do Python e a estabilidade de um sistema Desktop.
@@ -115,7 +127,7 @@ const Hero = () => {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-200"
+                className="bg-brand-blue text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-brand-light transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-200"
               >
                 Agendar Demonstração <ArrowRight className="w-5 h-5" />
               </a>
@@ -467,10 +479,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-                <Activity className="text-white w-6 h-6" />
-              </div>
-              <span className="text-2xl font-bold tracking-tight">Twins<span className="text-blue-600">ERP</span></span>
+              <Logo className="h-10 brightness-0 invert" />
             </div>
             <p className="text-slate-400 max-w-sm mb-8">
               O braço direito do empreendedor moderno. Velocidade, estabilidade e simplicidade em um único sistema desktop.
@@ -531,7 +540,7 @@ const CTASection = () => {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noreferrer"
-            className="bg-white text-blue-600 px-10 py-5 rounded-2xl text-xl font-bold hover:bg-blue-50 transition-all shadow-2xl flex items-center justify-center gap-3"
+            className="bg-white text-brand-blue px-10 py-5 rounded-2xl text-xl font-bold hover:bg-blue-50 transition-all shadow-2xl flex items-center justify-center gap-3"
           >
             Agendar via WhatsApp <Activity className="w-6 h-6" />
           </a>
@@ -539,7 +548,7 @@ const CTASection = () => {
              href={WHATSAPP_LINK}
              target="_blank"
              rel="noreferrer"
-             className="bg-blue-700/50 backdrop-blur-sm text-white border-2 border-blue-400/30 px-10 py-5 rounded-2xl text-xl font-bold hover:bg-blue-700/80 transition-all flex items-center justify-center gap-2"
+             className="bg-brand-blue/80 backdrop-blur-sm text-white border-2 border-white/30 px-10 py-5 rounded-2xl text-xl font-bold hover:bg-brand-blue transition-all flex items-center justify-center gap-2"
           >
             Falar com Especialista
           </a>
