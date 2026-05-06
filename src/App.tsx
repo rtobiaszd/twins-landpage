@@ -558,6 +558,125 @@ const CTASection = () => {
   );
 };
 
+const FloatingContact = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simulação de envio - em um app real aqui iria para uma API ou redirecionaria para o WhatsApp com os dados
+    const text = `Olá, meu nome é ${formData.name}. ${formData.message}`;
+    window.open(`https://wa.me/5541996088796?text=${encodeURIComponent(text)}`, '_blank');
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <motion.button
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-6 right-6 z-50 bg-brand-blue text-white p-4 rounded-full shadow-2xl shadow-blue-500/40 border-4 border-white active:scale-95"
+        id="floating-contact-btn"
+      >
+        <Headset className="w-6 h-6" />
+        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-ping" />
+      </motion.button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+            />
+            
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden"
+              id="contact-modal"
+            >
+              <div className="bg-brand-blue p-8 text-white">
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+                <h3 className="text-2xl font-bold mb-2">Fale com o Twins</h3>
+                <p className="text-blue-100 text-sm">Preencha os dados ou chame direto no WhatsApp.</p>
+              </div>
+
+              <div className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-4 mb-6">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Nome Completo</label>
+                    <input 
+                      required
+                      type="text" 
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue outline-none transition-all"
+                      placeholder="Seu nome"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">WhatsApp</label>
+                    <input 
+                      required
+                      type="tel" 
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue outline-none transition-all"
+                      placeholder="(00) 00000-0000"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Mensagem</label>
+                    <textarea 
+                      required
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue outline-none transition-all h-24 resize-none"
+                      placeholder="Como podemos ajudar?"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    ></textarea>
+                  </div>
+                  <button className="w-full bg-brand-blue text-white py-4 rounded-xl font-bold hover:bg-brand-light transition-all flex items-center justify-center gap-2">
+                    Enviar Mensagem <ArrowRight className="w-5 h-5" />
+                  </button>
+                </form>
+
+                <div className="relative flex items-center justify-center mb-6">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-slate-100"></div>
+                  </div>
+                  <span className="relative bg-white px-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Ou</span>
+                </div>
+
+                <a 
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full border-2 border-green-500 text-green-600 py-4 rounded-xl font-bold hover:bg-green-50 transition-all flex items-center justify-center gap-2"
+                >
+                  <Activity className="w-5 h-5" /> Chamar no WhatsApp
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
 export default function App() {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-600">
@@ -573,6 +692,7 @@ export default function App() {
         <FAQ />
       </main>
       <Footer />
+      <FloatingContact />
     </div>
   );
 }
