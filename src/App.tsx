@@ -25,6 +25,8 @@ import { motion, AnimatePresence } from 'motion/react';
 
 // --- Components ---
 
+const WHATSAPP_LINK = "https://wa.me/5541996088796?text=Olá!%20Gostaria%20de%20agendar%20uma%20demonstração%20do%20Twins%20ERP.";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,11 +43,16 @@ const Navbar = () => {
           
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
             <a href="#solucoes" className="hover:text-blue-600 transition-colors">Soluções</a>
+            <a href="#fiscal" className="hover:text-blue-600 transition-colors">Módulos Fiscais</a>
             <a href="#por-que-twins" className="hover:text-blue-600 transition-colors">Por que Twins?</a>
-            <a href="#faq" className="hover:text-blue-600 transition-colors">Dúvidas</a>
-            <button className="bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 active:scale-95">
+            <a 
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 active:scale-95"
+            >
               Agendar Demonstração
-            </button>
+            </a>
           </div>
 
           <div className="md:hidden">
@@ -65,11 +72,16 @@ const Navbar = () => {
             className="md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 flex flex-col gap-4 shadow-xl"
           >
             <a href="#solucoes" onClick={() => setIsOpen(false)} className="text-slate-600 font-medium">Soluções</a>
+            <a href="#fiscal" onClick={() => setIsOpen(false)} className="text-slate-600 font-medium">Módulos Fiscais</a>
             <a href="#por-que-twins" onClick={() => setIsOpen(false)} className="text-slate-600 font-medium">Por que Twins?</a>
-            <a href="#faq" onClick={() => setIsOpen(false)} className="text-slate-600 font-medium">Dúvidas</a>
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold">
+            <a 
+              href={WHATSAPP_LINK} 
+              target="_blank"
+              rel="noreferrer"
+              className="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold text-center"
+            >
               Agendar Demonstração
-            </button>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
@@ -99,12 +111,20 @@ const Hero = () => {
               Simplifique a emissão de NFe, controle seu estoque em tempo real e gerencie o financeiro com a velocidade do Python e a estabilidade de um sistema Desktop.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-200">
-                Testar Grátis Agora <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="bg-white text-slate-900 border-2 border-slate-200 px-8 py-4 rounded-xl text-lg font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
-                Ver Funcionalidades
-              </button>
+              <a 
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-200"
+              >
+                Agendar Demonstração <ArrowRight className="w-5 h-5" />
+              </a>
+              <a 
+                href="#fiscal"
+                className="bg-white text-slate-900 border-2 border-slate-200 px-8 py-4 rounded-xl text-lg font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
+              >
+                Conhecer Módulos
+              </a>
             </div>
           </motion.div>
 
@@ -279,6 +299,96 @@ const Features = () => {
   );
 };
 
+const DetailedFiscalFeatures = () => {
+  const modules = [
+    {
+      title: "NF-e & NFC-e",
+      items: [
+        "Consultar Status do Serviço",
+        "Consultar Cadastro e Notas",
+        "Consultar Protocolo",
+        "Emissão Completa NF-e e NFC-e",
+        "Cancelamento e Inutilização",
+        "Carta de Correção Eletrônica",
+        "Manifestação do Destinatário",
+        "Distribuição DF-e por NSU",
+        "Emissão em Contingência",
+        "Impressão de DANFE e DANFCE"
+      ],
+      icon: <ShieldCheck className="w-6 h-6 text-blue-600" />
+    },
+    {
+      title: "MDF-e (Transporte)",
+      items: [
+        "Consultar Status do Serviço",
+        "Consulta pela Chave de Acesso",
+        "Gerenciar MDF-es não encerrados",
+        "Emissão e Consultar Recibo",
+        "Gestão de Eventos (Cancelamento)",
+        "Impressão de DAMDFE"
+      ],
+      icon: <Activity className="w-6 h-6 text-green-600" />
+    },
+    {
+      title: "NFS-e (Serviços)",
+      items: [
+        "Consultar NFS-e e Rps",
+        "Consultar Lote de Imposto",
+        "Emissão de Notas de Serviço",
+        "Cancelamento de NFS-e"
+      ],
+      icon: <BarChart3 className="w-6 h-6 text-purple-600" />
+    },
+    {
+      title: "CT-e & Mais",
+      items: [
+        "Fluxo da Consulta de Distribuição (NSU)",
+        "Sincronização Fiscal em Tempo Real",
+        "Relatórios Fiscais Customizados"
+      ],
+      icon: <Zap className="w-6 h-6 text-orange-600" />
+    }
+  ];
+
+  return (
+    <section id="fiscal" className="py-24 bg-white border-t border-slate-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">O motor fiscal mais potente da categoria</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">Tudo o que sua empresa precisa para estar 100% em dia com a SEFAZ, sem travar sua operação.</p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {modules.map((module, mIdx) => (
+            <motion.div 
+              key={mIdx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: mIdx * 0.1 }}
+              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl hover:bg-white transition-all overflow-hidden relative group"
+            >
+              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                {module.icon}
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                {module.title}
+              </h3>
+              <ul className="space-y-3">
+                {module.items.map((item, iIdx) => (
+                  <li key={iIdx} className="flex gap-2 text-sm text-slate-600 leading-tight">
+                    <CheckCircle2 className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const WhyTwins = () => {
   return (
     <section id="por-que-twins" className="py-24 bg-white overflow-hidden">
@@ -415,14 +525,24 @@ const CTASection = () => {
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
       <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
         <h2 className="text-3xl lg:text-6xl font-bold mb-8">Pronto para dar a outra metade <br className="hidden md:block" /> da gestão para sua empresa?</h2>
-        <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">Junte-se a centenas de empresas que otimizaram sua emissão de NFe e controle financeiro com o Twins.</p>
+        <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">Fale agora com nosso time pelo WhatsApp e agende uma demonstração gratuita em minutos.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-white text-blue-600 px-10 py-5 rounded-2xl text-xl font-bold hover:bg-blue-50 transition-all shadow-2xl">
-            Iniciar Teste Gratuito
-          </button>
-          <button className="bg-blue-700/50 backdrop-blur-sm text-white border-2 border-blue-400/30 px-10 py-5 rounded-2xl text-xl font-bold hover:bg-blue-700/80 transition-all flex items-center justify-center gap-2">
+          <a 
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noreferrer"
+            className="bg-white text-blue-600 px-10 py-5 rounded-2xl text-xl font-bold hover:bg-blue-50 transition-all shadow-2xl flex items-center justify-center gap-3"
+          >
+            Agendar via WhatsApp <Activity className="w-6 h-6" />
+          </a>
+          <a 
+             href={WHATSAPP_LINK}
+             target="_blank"
+             rel="noreferrer"
+             className="bg-blue-700/50 backdrop-blur-sm text-white border-2 border-blue-400/30 px-10 py-5 rounded-2xl text-xl font-bold hover:bg-blue-700/80 transition-all flex items-center justify-center gap-2"
+          >
             Falar com Especialista
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -438,6 +558,7 @@ export default function App() {
         <SocialProof />
         <PainPoints />
         <Features />
+        <DetailedFiscalFeatures />
         <WhyTwins />
         <CTASection />
         <FAQ />
